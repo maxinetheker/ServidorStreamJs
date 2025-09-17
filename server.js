@@ -11,6 +11,7 @@ const NGINX_IP = process.env.NGINX_IP || '192.168.101.63';
 const NGINX_RTMP_PORT = process.env.NGINX_RTMP_PORT || '1935';
 const NGINX_STATS_PORT = process.env.NGINX_STATS_PORT || '8080';
 const NGINX_LOCAL_STATS = 'localhost:8080'; 
+const WEB_SERVER_URL = 'http://localhost:8000';
 
 // URLs base centralizadas
 const NGINX_BASE_URL = `http://${NGINX_IP}`;
@@ -1557,7 +1558,7 @@ io.on('connection', (socket) => {
 
             // Convertir rutas de filesystem a URLs HTTP
             const videoUrls = videosList.map(videoPath => {
-                return `${NGINX_HLS_URL}/${videoPath}`;
+                return `${WEB_SERVER_URL}/${videoPath}`;
             });
 
             console.log(`📊 Estado real del stream ${streamKey}:`, {
@@ -1612,7 +1613,7 @@ io.on('connection', (socket) => {
                     // Convertir rutas de filesystem a URLs HTTP
                     const videoUrls = videosList.map(videoPath => {
                         // Convertir "storage/1/videos_de_corte/file.mp4" a URL HTTP
-                        return `${NGINX_HLS_URL}/${videoPath}`;
+                        return `${WEB_SERVER_URL}/${videoPath}`;
                     });
                     
                     socket.emit('videos_list_response', {
@@ -1653,7 +1654,7 @@ io.on('connection', (socket) => {
             for (const [userId, stream] of Object.entries(manager.streams)) {
                 if (stream.claveLocal === streamKey) {
                     const videoUrls = (stream.listaVideos || []).map(videoPath => {
-                        return `${NGINX_HLS_URL}/${videoPath}`;
+                        return `${WEB_SERVER_URL}/${videoPath}`;
                     });
                     
                     console.log(`📊 Estado verificado - RTMP: ${stream.deviceConnected}, Videos: ${videoUrls.length}`);
@@ -1724,6 +1725,23 @@ process.on('unhandledRejection', (reason, promise) => {
 
 // Iniciar servidor
 const PORT = process.env.PORT || 5000;
+
+// Manejar errores del server (por ejemplo EADDRINUSE) de forma explícita
+server.on('error', (error) => {
+    if (error && error.code === 'EADDRINUSE') {
+        // Registrar en nuestro log y en consola con información clara
+        writeErrorLog(`Address already in use ${error.address || '0.0.0.0'}:${error.port || PORT}`, error, 'ERROR');
+        console.error(`❌ Error: El puerto ${error.port || PORT} ya está en uso. Asegúrate de detener el proceso que lo está usando o configura otra variable PORT.`);
+        // Salir con un código reconocible para managers (no dejar como uncaughtException)
+        process.exit(98);
+    }
+
+    // Otros errores del servidor
+    writeErrorLog('Server Error', error, 'ERROR');
+    console.error('❌ Server error:', error);
+    process.exit(1);
+});
+
 server.listen(PORT, '0.0.0.0', () => {
     console.log(`\n🚀 Servidor iniciado en puerto ${PORT}`);
     console.log(`📺 Viewer: http://localhost:${PORT}/viewer/{clave_local}`);
