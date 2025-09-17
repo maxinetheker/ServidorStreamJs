@@ -1,0 +1,31 @@
+{
+  "hls": {
+    "segmentDuration": 2,
+    "playlistSize": 6,
+    "flags": "delete_segments+independent_segments+append_list",
+    "allowCache": true
+  },
+  "monitoring": {
+    "deviceCheckInterval": 5000,
+    "healthCheckInterval": 10000,
+    "maxSegmentAge": 30000,
+    "curlTimeout": 5000,
+    "restartDelay": 3000,
+    "ffmpegRestartDelay": 5000
+  },
+  "ffmpeg": {
+    "videoCodec": "h264_qsv",
+    "preset": "veryfast",
+    "crf": 20,
+    "maxrate": "4000k",
+    "bufsize": "8000k",
+    "gopSize": 30,
+    "audioCodec": "aac",
+    "audioBitrate": "128k",
+    "audioSampleRate": "48000"
+  },
+  "logging": {
+    "enableErrorLog": false,
+    "enableFFmpegLog": false
+  }
+}

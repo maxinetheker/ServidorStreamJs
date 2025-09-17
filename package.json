@@ -1,0 +1,48 @@
+{
+  "name": "webrtc-streaming-server",
+  "version": "1.0.0",
+  "description": "Servidor de streaming WebRTC con HLS y monitoreo de dispositivos",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --no-deprecation server.js",
+    "dev": "nodemon --exec \"node --no-deprecation\" server.js",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "dependencies": {
+    "axios": "^1.11.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "glob": "^10.3.10",
+    "node-fetch": "^3.3.2",
+    "node-media-server": "^4.0.21",
+    "simple-peer": "^9.11.1",
+    "socket.io": "^4.8.1",
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "keywords": [
+    "webrtc",
+    "streaming",
+    "ffmpeg",
+    "hls",
+    "rtmp",
+    "nginx",
+    "obs"
+  ],
+  "author": "Tu Nombre",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tu-usuario/webrtc-streaming-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tu-usuario/webrtc-streaming-server/issues"
+  },
+  "homepage": "https://github.com/tu-usuario/webrtc-streaming-server#readme"
+}
