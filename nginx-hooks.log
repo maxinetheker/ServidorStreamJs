@@ -10,3 +10,43 @@
 
 [2025-09-17T04:13:15.309Z] INFO: [ON_PUBLISH_DONE_SUCCESS] 2025-09-17T04:13:15.308Z - Stream: ersXBaTte4du389ea9GAjO2ox18bMOFz - IP: unknown - DESCONECTADO
 
+[2025-09-17T04:23:03.232Z] INFO: [ON_PUBLISH_SUCCESS] 2025-09-17T04:23:03.230Z - Stream: ersXBaTte4du389ea9GAjO2ox18bMOFz - IP: unknown - AUTORIZADO
+
+[2025-09-17T04:25:40.014Z] INFO: [ON_PUBLISH_DONE_SUCCESS] 2025-09-17T04:25:40.013Z - Stream: ersXBaTte4du389ea9GAjO2ox18bMOFz - IP: unknown - DESCONECTADO
+
+[2025-09-17T04:31:17.944Z] DEBUG: [ON_PUBLISH_RECEIVED] Stream: ersXBaTte4du389ea9GAjO2ox18bMOFz - IP: unknown - HEADERS: {"host":"127.0.0.1","content-type":"application/x-www-form-urlencoded","connection":"Close","content-length":"204"} - BODY: {"app":"live","flashver":"FMLE/3.0 (compatible; IRLPRO/nu","swfurl":"","tcurl":"rtmp://192.168.101.63:1935/live","pageurl":"","addr":"192.168.101.10","clientid":"855","call":"publish","name":"ersXBaTte4du389ea9GAjO2ox18bMOFz","type":"live"}
+
+[2025-09-17T04:31:17.946Z] INFO: [ON_PUBLISH_SUCCESS] 2025-09-17T04:31:17.946Z - Stream: ersXBaTte4du389ea9GAjO2ox18bMOFz - IP: unknown - AUTORIZADO
+
+[2025-09-17T04:32:35.462Z] DEBUG: [ON_PUBLISH_DONE_RECEIVED] 2025-09-17T04:32:35.462Z - Stream: ersXBaTte4du389ea9GAjO2ox18bMOFz - IP: unknown - HEADERS: {"host":"127.0.0.1","content-type":"application/x-www-form-urlencoded","connection":"Close","content-length":"199"} - BODY: {"app":"live","flashver":"FMLE/3.0 (compatible; IRLPRO/nu","swfurl":"","tcurl":"rtmp://192.168.101.63:1935/live","pageurl":"","addr":"192.168.101.10","clientid":"855","call":"publish_done","name":"ersXBaTte4du389ea9GAjO2ox18bMOFz"}
+
+[2025-09-17T04:32:35.463Z] INFO: [ON_PUBLISH_DONE_SUCCESS] 2025-09-17T04:32:35.463Z - Stream: ersXBaTte4du389ea9GAjO2ox18bMOFz - IP: unknown - DESCONECTADO
+
+[2025-09-17T04:32:39.110Z] INFO: [ON_PUBLISH_REJECTED] 2025-09-17T04:32:39.110Z - Stream: ersXBaTte4du389ea9GAjO2ox18bMOFz - IP: unknown - NO AUTORIZADO
+
+[2025-09-17T04:32:39.110Z] DEBUG: [ON_PUBLISH_REJECTED_DETAILS] Stream: ersXBaTte4du389ea9GAjO2ox18bMOFz - HEADERS: {"host":"127.0.0.1","content-type":"application/x-www-form-urlencoded","connection":"Close","content-length":"204"} - BODY: {"app":"live","flashver":"FMLE/3.0 (compatible; IRLPRO/nu","swfurl":"","tcurl":"rtmp://192.168.101.63:1935/live","pageurl":"","addr":"192.168.101.10","clientid":"882","call":"publish","name":"ersXBaTte4du389ea9GAjO2ox18bMOFz","type":"live"}
+
+[2025-09-17T04:32:45.749Z] DEBUG: [ON_PUBLISH_RECEIVED] Stream: ersXBaTte4du389ea9GAjO2ox18bMOFz - IP: unknown - HEADERS: {"host":"127.0.0.1","content-type":"application/x-www-form-urlencoded","connection":"Close","content-length":"204"} - BODY: {"app":"live","flashver":"FMLE/3.0 (compatible; IRLPRO/nu","swfurl":"","tcurl":"rtmp://192.168.101.63:1935/live","pageurl":"","addr":"192.168.101.10","clientid":"885","call":"publish","name":"ersXBaTte4du389ea9GAjO2ox18bMOFz","type":"live"}
+
+[2025-09-17T04:32:45.750Z] INFO: [ON_PUBLISH_SUCCESS] 2025-09-17T04:32:45.750Z - Stream: ersXBaTte4du389ea9GAjO2ox18bMOFz - IP: unknown - AUTORIZADO
+
+[2025-09-17T04:32:58.476Z] DEBUG: [ON_PUBLISH_DONE_RECEIVED] 2025-09-17T04:32:58.476Z - Stream: ersXBaTte4du389ea9GAjO2ox18bMOFz - IP: unknown - HEADERS: {"host":"127.0.0.1","content-type":"application/x-www-form-urlencoded","connection":"Close","content-length":"199"} - BODY: {"app":"live","flashver":"FMLE/3.0 (compatible; IRLPRO/nu","swfurl":"","tcurl":"rtmp://192.168.101.63:1935/live","pageurl":"","addr":"192.168.101.10","clientid":"885","call":"publish_done","name":"ersXBaTte4du389ea9GAjO2ox18bMOFz"}
+
+[2025-09-17T04:32:58.477Z] INFO: [ON_PUBLISH_DONE_SUCCESS] 2025-09-17T04:32:58.477Z - Stream: ersXBaTte4du389ea9GAjO2ox18bMOFz - IP: unknown - DESCONECTADO
+
+[2025-10-18T00:33:28.568Z] DEBUG: [ON_PUBLISH_RECEIVED] Stream: 3frXJLt00N75uhEFtJBdfyZQkbuOQwZF - IP: unknown - HEADERS: {"host":"127.0.0.1","content-type":"application/x-www-form-urlencoded","connection":"Close","content-length":"204"} - BODY: {"app":"live","flashver":"FMLE/3.0 (compatible; IRLPRO/nu","swfurl":"","tcurl":"rtmp://192.168.101.63:1935/live","pageurl":"","addr":"192.168.101.10","clientid":"153","call":"publish","name":"3frXJLt00N75uhEFtJBdfyZQkbuOQwZF","type":"live"}
+
+[2025-10-18T00:33:28.573Z] INFO: [ON_PUBLISH_SUCCESS] 2025-10-18T00:33:28.572Z - Stream: 3frXJLt00N75uhEFtJBdfyZQkbuOQwZF - IP: unknown - AUTORIZADO
+
+[2025-10-18T00:33:40.966Z] DEBUG: [ON_PUBLISH_DONE_RECEIVED] 2025-10-18T00:33:40.966Z - Stream: 3frXJLt00N75uhEFtJBdfyZQkbuOQwZF - IP: unknown - HEADERS: {"host":"127.0.0.1","content-type":"application/x-www-form-urlencoded","connection":"Close","content-length":"199"} - BODY: {"app":"live","flashver":"FMLE/3.0 (compatible; IRLPRO/nu","swfurl":"","tcurl":"rtmp://192.168.101.63:1935/live","pageurl":"","addr":"192.168.101.10","clientid":"153","call":"publish_done","name":"3frXJLt00N75uhEFtJBdfyZQkbuOQwZF"}
+
+[2025-10-18T00:33:40.966Z] INFO: [ON_PUBLISH_DONE_SUCCESS] 2025-10-18T00:33:40.966Z - Stream: 3frXJLt00N75uhEFtJBdfyZQkbuOQwZF - IP: unknown - DESCONECTADO
+
+[2025-10-18T00:33:49.823Z] DEBUG: [ON_PUBLISH_RECEIVED] Stream: 3frXJLt00N75uhEFtJBdfyZQkbuOQwZF - IP: unknown - HEADERS: {"host":"127.0.0.1","content-type":"application/x-www-form-urlencoded","connection":"Close","content-length":"204"} - BODY: {"app":"live","flashver":"FMLE/3.0 (compatible; IRLPRO/nu","swfurl":"","tcurl":"rtmp://192.168.101.63:1935/live","pageurl":"","addr":"192.168.101.10","clientid":"160","call":"publish","name":"3frXJLt00N75uhEFtJBdfyZQkbuOQwZF","type":"live"}
+
+[2025-10-18T00:33:49.824Z] INFO: [ON_PUBLISH_SUCCESS] 2025-10-18T00:33:49.824Z - Stream: 3frXJLt00N75uhEFtJBdfyZQkbuOQwZF - IP: unknown - AUTORIZADO
+
+[2025-10-18T00:33:56.677Z] DEBUG: [ON_PUBLISH_DONE_RECEIVED] 2025-10-18T00:33:56.677Z - Stream: 3frXJLt00N75uhEFtJBdfyZQkbuOQwZF - IP: unknown - HEADERS: {"host":"127.0.0.1","content-type":"application/x-www-form-urlencoded","connection":"Close","content-length":"199"} - BODY: {"app":"live","flashver":"FMLE/3.0 (compatible; IRLPRO/nu","swfurl":"","tcurl":"rtmp://192.168.101.63:1935/live","pageurl":"","addr":"192.168.101.10","clientid":"160","call":"publish_done","name":"3frXJLt00N75uhEFtJBdfyZQkbuOQwZF"}
+
+[2025-10-18T00:33:56.677Z] INFO: [ON_PUBLISH_DONE_SUCCESS] 2025-10-18T00:33:56.677Z - Stream: 3frXJLt00N75uhEFtJBdfyZQkbuOQwZF - IP: unknown - DESCONECTADO
+

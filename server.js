@@ -41,6 +41,17 @@ function writeErrorLog(message, error = null, type = 'INFO') {
     }
 }
 
+// Helper para stringificar objetos de forma segura y truncada (evita logs gigantes)
+function safeStringify(obj, maxLen = 1200) {
+    try {
+        const s = JSON.stringify(obj);
+        if (s.length > maxLen) return s.slice(0, maxLen) + '...';
+        return s;
+    } catch (e) {
+        try { return String(obj); } catch (ee) { return '[unstringifiable]'; }
+    }
+}
+
 // App setup
 const app = express();
 const server = http.createServer(app);
@@ -838,6 +849,16 @@ app.post('/on_publish', (req, res) => {
         
         // ✅ TODO EL PROCESAMIENTO PESADO EN BACKGROUND (no bloquea nginx)
         setImmediate(() => {
+            // Log detallado para depuración: headers, body y IP
+            try {
+                const clientIP = req.ip || req.connection.remoteAddress || req.headers['x-forwarded-for'] || 'unknown';
+                const hdrs = safeStringify(req.headers);
+                const bodyPreview = safeStringify(req.body);
+                writeErrorLog(`[ON_PUBLISH_RECEIVED] Stream: ${streamKey} - IP: ${clientIP} - HEADERS: ${hdrs} - BODY: ${bodyPreview}`, null, 'DEBUG');
+            } catch (err) {
+                writeErrorLog('[ON_PUBLISH_RECEIVED] error stringifying request', err, 'ERROR');
+            }
+
             const timestamp = new Date().toISOString();
             console.log(`✅ [${timestamp}] ON_PUBLISH - Stream ${streamKey} AUTORIZADO`);
             processOnPublishAsync(streamKey, req, timestamp);
@@ -852,6 +873,14 @@ app.post('/on_publish', (req, res) => {
             console.log(`❌ [${timestamp}] ON_PUBLISH - Stream ${streamKey} NO AUTORIZADO`);
             const clientIP = req.ip || req.connection.remoteAddress || 'unknown';
             writeErrorLog(`[ON_PUBLISH_REJECTED] ${timestamp} - Stream: ${streamKey} - IP: ${clientIP} - NO AUTORIZADO`);
+            // También guardar headers/body para conexiones rechazadas
+            try {
+                const hdrs = safeStringify(req.headers);
+                const bodyPreview = safeStringify(req.body);
+                writeErrorLog(`[ON_PUBLISH_REJECTED_DETAILS] Stream: ${streamKey} - HEADERS: ${hdrs} - BODY: ${bodyPreview}`, null, 'DEBUG');
+            } catch (err) {
+                writeErrorLog('[ON_PUBLISH_REJECTED] error stringifying request', err, 'ERROR');
+            }
         });
     }
 });
@@ -912,6 +941,16 @@ app.post('/on_publish_done', (req, res) => {
     
     // ✅ TODO EL PROCESAMIENTO EN BACKGROUND (no bloquea nginx)
     setImmediate(() => {
+        // Log detallado para depuración de desconexiones
+        try {
+            const clientIP = req.ip || req.connection.remoteAddress || req.headers['x-forwarded-for'] || 'unknown';
+            const hdrs = safeStringify(req.headers);
+            const bodyPreview = safeStringify(req.body);
+            writeErrorLog(`[ON_PUBLISH_DONE_RECEIVED] ${new Date().toISOString()} - Stream: ${streamKey} - IP: ${clientIP} - HEADERS: ${hdrs} - BODY: ${bodyPreview}`, null, 'DEBUG');
+        } catch (err) {
+            writeErrorLog('[ON_PUBLISH_DONE_RECEIVED] error stringifying request', err, 'ERROR');
+        }
+
         const timestamp = new Date().toISOString();
         console.log(`🛑 [${timestamp}] ON_PUBLISH_DONE - Stream ${streamKey} RTMP desconectado`);
         processOnPublishDoneAsync(streamKey, req, timestamp);
@@ -1725,23 +1764,6 @@ process.on('unhandledRejection', (reason, promise) => {
 
 // Iniciar servidor
 const PORT = process.env.PORT || 5000;
-
-// Manejar errores del server (por ejemplo EADDRINUSE) de forma explícita
-server.on('error', (error) => {
-    if (error && error.code === 'EADDRINUSE') {
-        // Registrar en nuestro log y en consola con información clara
-        writeErrorLog(`Address already in use ${error.address || '0.0.0.0'}:${error.port || PORT}`, error, 'ERROR');
-        console.error(`❌ Error: El puerto ${error.port || PORT} ya está en uso. Asegúrate de detener el proceso que lo está usando o configura otra variable PORT.`);
-        // Salir con un código reconocible para managers (no dejar como uncaughtException)
-        process.exit(98);
-    }
-
-    // Otros errores del servidor
-    writeErrorLog('Server Error', error, 'ERROR');
-    console.error('❌ Server error:', error);
-    process.exit(1);
-});
-
 server.listen(PORT, '0.0.0.0', () => {
     console.log(`\n🚀 Servidor iniciado en puerto ${PORT}`);
     console.log(`📺 Viewer: http://localhost:${PORT}/viewer/{clave_local}`);
